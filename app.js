@@ -12,9 +12,6 @@ const promptModal = document.getElementById('prompt-modal');
 const modalClose = el('modal-close');
 const toastEl = el('toast');
 
-// Configure backend base URL (set window.BACKEND_URL in HTML if needed)
-const BACKEND_URL = window.BACKEND_URL || '';
-
 const PRESETS = {
   '1:1': ['512x512','768x768','1024x1024','1536x1536'],
   '16:9': ['1280x720','1920x1080','2560x1440','3840x2160'],
@@ -64,6 +61,8 @@ function populateSizes(){
 selRatio?.addEventListener('change', populateSizes);
 // Initialize sizes on load
 populateSizes();
+// Configure backend base URL (set window.BACKEND_URL in HTML if needed)
+const BACKEND_URL = window.BACKEND_URL || '';
 
 async function callGenerate(prompt, image_size, steps){
   const base = BACKEND_URL || window.location.origin;
@@ -73,7 +72,10 @@ async function callGenerate(prompt, image_size, steps){
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ prompt, image_size, num_inference_steps: steps })
   });
-  if (!r.ok) { throw new Error(await r.text()); }
+  if (!r.ok) {
+    const txt = await r.text();
+    throw new Error(`HTTP ${r.status} ${r.statusText} - ${txt}`);
+  }
   return r.json();
 }
 

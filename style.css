@@ -81,12 +81,7 @@ textarea.input { resize: vertical; }
 .row.row-3 { grid-template-columns: 1fr 1fr 1fr; }
 .col { display: grid; gap: 8px; }
 
-.preview { margin-top: 20px; }
-.preview-header { display: flex; align-items: baseline; justify-content: space-between; }
-.preview-title { margin: 0; font-size: 20px; }
-.preview-subtitle { margin: 6px 0 0; color: var(--fg-muted); }
-.preview-body { display: grid; place-items: center; padding: 10px; }
-.preview-img { max-width: 100%; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+/* removed unused preview base styles */
 
 /* Modern enhancements for Create Image UI */
 
@@ -113,23 +108,9 @@ textarea.input { resize: vertical; }
 .button.small { padding: 6px 10px; font-size: 13px; }
 .button.primary { border-color: transparent; background: linear-gradient(180deg, rgba(124,154,255,0.35), rgba(124,154,255,0.12)); box-shadow: 0 0 12px rgba(124,154,255,0.25); }
 
-/* Preview section */
-.preview-card { background: radial-gradient(1400px 1400px at 100% 0%, rgba(168,85,247,0.06), transparent 40%), var(--card); }
-.preview-header { display: flex; align-items: center; justify-content: space-between; }
-.preview-actions { display: flex; gap: 8px; }
-.preview-empty { display: grid; place-items: center; padding: 16px; border: 1px dashed var(--border); border-radius: 12px; color: var(--fg-muted); }
-.preview-empty .wand { font-size: 22px; }
-.preview-body { display: grid; gap: 10px; }
-.preview-img { display: none; }
-.preview-img.active { display: block; }
+/* removed unused preview section styles */
 
-/* History grid */
-.history { margin-top: 16px; }
-.history-header { display: flex; align-items: baseline; justify-content: space-between; }
-.history-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
-.hist-item { background: #0f0f15; border: 1px solid var(--border); border-radius: 10px; padding: 6px; display: grid; gap: 6px; }
-.hist-thumb { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
-.hist-actions { display: flex; justify-content: space-between; }
+/* removed unused history styles */
 
 /* Modal */
 .modal { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,0.45); backdrop-filter: blur(6px); z-index: 50; }
