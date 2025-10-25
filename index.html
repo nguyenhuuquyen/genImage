@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Create Image</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app" aria-live="polite">
+    <header class="app-header">
+      <div class="title-block">
+        <h1 class="heading">Create Image</h1>
+        <p class="subheading">Generate beautiful AI visuals in seconds.</p>
+        <p class="subtitle">Type your idea, choose a format, and let AI draw it for you.</p>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="intro">
+        <p>Enter your prompt, choose ratio/size, then click “Generate”. The image will download automatically.</p>
+      </section>
+
+      <div class="card prompt-card gradient-border">
+        <div class="card-tools"><button id="prompt-help" class="icon-btn" title="Explore ideas">💡</button></div>
+        <form id="gen-form" class="form" novalidate>
+          <label for="prompt" class="label">Prompt</label>
+          <textarea id="prompt" class="input" rows="6" placeholder="Mô tả hình ảnh bạn muốn tạo..."></textarea>
+
+          <div class="row row-3">
+            <div class="col">
+              <label for="ratio" class="label">Aspect Ratio</label>
+              <select id="ratio" class="select">
+                <option value="9:16">9:16 (vertical)</option>
+                <option value="16:9">16:9 (landscape)</option>
+                <option value="1:1">1:1 (square)</option>
+                <option value="4:3">4:3</option>
+                <option value="3:4">3:4</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="size" class="label">Image Size</label>
+              <select id="size" class="select">
+                <option value="896x1536">896x1536 (preset)</option>
+                <option value="1080x1920">1080x1920</option>
+                <option value="1440x2560">1440x2560</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="steps" class="label">Inference steps</label>
+              <input id="steps" class="input" type="number" min="1" max="50" value="20" />
+            </div>
+          </div>
+
+          <div class="actions" role="group" aria-label="Actions">
+            <button id="generate" class="button primary" type="submit" aria-busy="false">Generate</button>
+          </div>
+        </form>
+      </div>
+
+
+
+      <section class="output">
+        <pre id="log" class="log" aria-label="Log"></pre>
+      </section>
+    </main>
+  </div>
+
+  <div id="prompt-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Explore ideas</h3>
+        <button id="modal-close" class="icon-btn" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-prompts"></div>
+    </div>
+  </div>
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
