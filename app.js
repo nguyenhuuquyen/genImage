@@ -12,6 +12,9 @@ const promptModal = document.getElementById('prompt-modal');
 const modalClose = el('modal-close');
 const toastEl = el('toast');
 
+// Configure backend base URL (set window.BACKEND_URL in HTML if needed)
+const BACKEND_URL = window.BACKEND_URL || '';
+
 const PRESETS = {
   '1:1': ['512x512','768x768','1024x1024','1536x1536'],
   '16:9': ['1280x720','1920x1080','2560x1440','3840x2160'],
@@ -63,12 +66,14 @@ selRatio?.addEventListener('change', populateSizes);
 populateSizes();
 
 async function callGenerate(prompt, image_size, steps){
-  const r = await fetch('/api/generate', {
-    method:'POST',
-    headers:{ 'Content-Type':'application/json' },
+  const base = BACKEND_URL || window.location.origin;
+  const endpoint = `${base.replace(/\/$/, '')}/api/generate`;
+  const r = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ prompt, image_size, num_inference_steps: steps })
   });
-  if (!r.ok){ throw new Error(await r.text()); }
+  if (!r.ok) { throw new Error(await r.text()); }
   return r.json();
 }
 
